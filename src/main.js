@@ -1,24 +1,20 @@
 
 const { getUserInfo, getMezurashis } = require('./client');
-const context = require('./context');
-const { process } = require('./mezurashi');
+const { play } = require('./mezurashi');
 
-// TODO: add timestamp to logs
+const main = async (account) => {
+  const userInfo = await getUserInfo(account);
+  console.log(`Account id=${account} arcade=${userInfo.arcade}, history=${userInfo.currentMap}, mezuwar=${userInfo.mezuwar}`);
 
-const main = async () => {
-  const userInfo = await getUserInfo(context.account);
-  console.log(`Account id=${context.account} arcade=${userInfo.arcade}, history=${userInfo.currentMap}, mezuwar=${userInfo.mezuwar}`);
-  context.userInfo = userInfo;
-
-  const mezurashis = await getMezurashis(context.account);
-  context.mezurashis = mezurashis;
+  const mezurashis = await getMezurashis(account);
   console.log(`Loaded ${mezurashis.length} mezurashis`);
 
-  for (const mezurashi of mezurashis) {
-    console.log(`Selected Mezurashi #${mezurashi.id} (id=${mezurashi._id})`);
-    context.mezurashi = mezurashi;
-    await process();
+  for (const mezurashi of mezurashis.slice(0, 1)) { // TODO
+    console.log(`Selected Mezurashi #${mezurashi.id} (id=${mezurashi._id}, games=${mezurashi.gameCount}/10)`);
+    await play(userInfo, mezurashi);
   }
 };
 
-main();
+// main('0xA2Ed91BF97377eB418804c302319fa26f258292A');
+main('0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11');
+
