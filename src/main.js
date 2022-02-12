@@ -9,7 +9,7 @@ const main = async (account) => {
   const mezurashis = await getMezurashis(account);
   console.log(`Loaded ${mezurashis.length} mezurashis`);
 
-  for (const mezurashi of mezurashis.slice(0, 1)) { // TODO
+  for (const mezurashi of mezurashis.slice(1, 2)) { // TODO
     console.log(`Selected Mezurashi #${mezurashi.id} (id=${mezurashi._id}, games=${mezurashi.gameCount}/10)`);
     await play(userInfo, mezurashi);
   }

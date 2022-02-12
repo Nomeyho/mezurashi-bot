@@ -1,4 +1,4 @@
-const { getArcadeMap, upgradeMezurashi, getUserInfo, getMezurashi } = require('./client');
+const { getArcadeMap } = require('./client');
 const { play } = require('./game');
 const { upgradeStats } = require('./stats');
 
@@ -7,8 +7,9 @@ const { upgradeStats } = require('./stats');
  * - logger
  * - refactoring
  * - add random delay
- * - add more headers
  * - add timestamp to logs
+ * - improve logs
+ * - improve stat increase
  * 1 try again
  * 2 +5
  * 3 +10
@@ -25,6 +26,7 @@ module.exports.play = async function (userInfo, mezurashi) {
         const map = await selectMap(hasRequiredStats, userInfo, nextMap);
         console.log(`Using map: ${map.name} (level=${map.level}, id=${map._id})`);
         await play(mezurashi, map);
+        return; // TODO
     }
 
     console.log('No more game to play');
