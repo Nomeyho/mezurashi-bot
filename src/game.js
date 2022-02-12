@@ -29,7 +29,7 @@ function onMessage(mezurashi, game, map, resolve) {
         await onKey(ws, message, mezurashi, game);
         break;
       case "end":
-        await onEnd(message, resolve);
+        await onEnd(message, game, resolve);
         break;
       case "enemyfight":
       case "timeout":
@@ -80,7 +80,7 @@ async function onKey(ws, message, mezurashi, game) {
   }
 }
 
-async function onEnd(message, resolve) {
-  console.log(`Result: ${message.result} ${message.kota}$`);
+async function onEnd(message, game, resolve) {
+  console.log(`End fight: remainingLife=${game.userLife} result=${message.result} reward=${message.kota}$`);
   resolve();
 }

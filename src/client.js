@@ -34,7 +34,8 @@ module.exports.getHistoryMaps = async function (account) {
 }
 
 module.exports.upgradeMezurashi = async function (account, mezurashiId, stat) {
-  return await post(account, `/v1/users/mezurashi/${mezurashiId}/upgrade/${stat}`, '');
+  const result = await post(account, `/v1/users/mezurashi/${mezurashiId}/upgrade/${stat}`, '');
+  return result.number;
 }
 
 async function get(account, path) {

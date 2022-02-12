@@ -9,6 +9,40 @@ const COEFF = {
   speed: 0.9,
   critical: 0.5,
 };
+const UPGRADES = {
+  life: [
+    "try again",
+    "+5 life",
+    "+10 life",
+    "loose",
+    "+8 life",
+    "+10 life (special)",
+  ],
+  force: [
+    "try again",
+    "+1 force",
+    "+3 force",
+    "loose",
+    "+2 force",
+    "+3 force (special)",
+  ],
+  speed: [
+    "try again",
+    "+2 speed",
+    "+5 speed",
+    "loose",
+    "+3 speed",
+    "+5 speed (special)",
+  ],
+  critical: [
+    "try again",
+    "+0.01% critical",
+    "+0.03% critical",
+    "loose",
+    "+0.02% critical",
+    "+0.03% critical (special)",
+  ],
+};
 
 module.exports.upgradeStats = async function (userInfo, mezurashi, map) {
   for (const stat of STATS) {
@@ -21,24 +55,30 @@ module.exports.hasRequiredStats = function (mezurashi, map) {
 };
 
 async function upgradeStat(userInfo, stat, mezurashi, requiredStat) {
-  console.log(`Next map requires: ${mezurashi[stat]}/${requiredStat} ${stat}`);
-
-  while (userInfo.mezuwar >= COST && mezurashi[stat] < requiredStat) {
-    await doUpgradeStat(userInfo, mezurashi, stat);
+  if (mezurashi[stat] < requiredStat) {
+    console.log(
+      `${stat.capitalize()} required for next level: ${mezurashi[stat]}/${requiredStat}`
+    );
   }
 
-  console.log(`No more money to upgrade '${stat}': ${userInfo.mezuwar}$`);
+  while (mezurashi[stat] < requiredStat) {
+    if (userInfo.mezuwar < COST) {
+      console.log(
+        `Not enough money to upgrade '${stat}': ${userInfo.mezuwar}$`
+      );
+      return;
+    }
+    await doUpgradeStat(userInfo, mezurashi, stat);
+  }
 }
 
 async function doUpgradeStat(userInfo, mezurashi, stat) {
-  await upgradeMezurashi(mezurashi.account, mezurashi._id, stat);
+  const result = await upgradeMezurashi(mezurashi.account, mezurashi._id, stat);
+  console.log(`Upgraded: ${UPGRADES[stat][result]}`);
+
   await sleep(2000);
   await refreshMezurashi(mezurashi);
   await refreshUserInfo(userInfo);
-
-  console.log(
-    `Upgraded: life=${mezurashi.life}, force=${mezurashi.force}, speed=${mezurashi.speed}, critical=${mezurashi.critical}`
-  );
 }
 
 function hasRequiredStat(mezurashi, map, stat) {

@@ -4,13 +4,14 @@ const { play } = require('./mezurashi');
 
 const main = async (account) => {
   const userInfo = await getUserInfo(account);
-  console.log(`Account id=${account} arcade=${userInfo.arcade}, history=${userInfo.currentMap}, mezuwar=${userInfo.mezuwar}`);
+  console.log(`Account: id=${account} arcade=${userInfo.arcade}, history=${userInfo.currentMap}, mezuwar=${userInfo.mezuwar}`);
   
   const mezurashis = await getMezurashis(account);
   console.log(`Loaded ${mezurashis.length} mezurashis`);
 
-  for (const mezurashi of mezurashis.slice(1, 2)) { // TODO
-    console.log(`Selected Mezurashi #${mezurashi.id} (id=${mezurashi._id}, games=${mezurashi.gameCount}/10)`);
+  for (let i = 2; i < 3; i++) {
+    const mezurashi = mezurashis[i];
+    console.log(`Mezurashi ${i}/${mezurashis.length}: #${mezurashi.id}, id=${mezurashi._id}, games=${mezurashi.gameCount}/10`);
     await play(userInfo, mezurashi);
   }
 };

@@ -6,15 +6,7 @@ const { sleep } = require("./utils");
 /**
  * TODO:
  * - logger
- *      - add timestamp to logs
- *      - improve logs
- 
- * 1 try again
- * 2 +5
- * 3 +10
- * 4 you loose
- * 5 +8
- * 6 +10 specials
+ * - add timestamp to logs
  */
 
 const MAX_GAME_COUNT = 10;
@@ -23,11 +15,19 @@ module.exports.play = async function (userInfo, mezurashi) {
 
     while (mezurashi.gameCount < MAX_GAME_COUNT) {
         const nextMap = await getArcadeMap(userInfo.account, userInfo.arcade);
+        console.log(`Next map: ${nextMap.name} (level=${nextMap.level}, id=${nextMap._id})`);
+
         await upgradeStats(userInfo, mezurashi, nextMap);
         await sleep(500);
         
         const map = await selectMap(userInfo, mezurashi, nextMap);
-        console.log(`Using map: ${map.name} (level=${map.level}, id=${map._id})`);
+        console.log(`Map: ${map.name} (level=${map.level}, id=${map._id})`);
+        console.log(
+            `Mezurashi stats: life=${mezurashi.life}, force=${mezurashi.force}, speed=${mezurashi.speed}, critical=${mezurashi.critical}`
+        );
+        console.log(
+            `Enemy stats: life=${map.life}, force=${map.force}, speed=${map.speed}, critical=${map.critical}`
+        );
         await sleep(500);
 
         await play(mezurashi, map);
@@ -45,9 +45,10 @@ module.exports.play = async function (userInfo, mezurashi) {
 
 async function selectMap(userInfo, mezurashi, nextMap) {
     if (hasRequiredStats(mezurashi, nextMap) || userInfo.arcade == 0) {
+        console.log(`Sufficient stats, using next map`);
         return nextMap;
     } else {
-        // Stick to previous map
+        console.log(`Insufficient stats, using previous map`);
         return await getArcadeMap(userInfo.account, userInfo.arcade - 1);
     }
 }
