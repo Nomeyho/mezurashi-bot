@@ -65,11 +65,13 @@ async function onLogin(ws, mezurashi, map) {
 
 async function onUpdate(message, game) {
   const { action, ...updatedGame } = message;
+  logger.info(`> userLife=${message.userLife} enemyLife=${message.enemyLife}`);
   Object.assign(game, updatedGame);
 }
 
 async function onKey(ws, message, mezurashi, game) {
   if (message.key) {
+    logger.info(`> Press key ${message.key}`);
     ws.send({
       account: mezurashi.account,
       action: "game",

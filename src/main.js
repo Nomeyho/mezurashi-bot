@@ -11,7 +11,7 @@ const main = async (account) => {
   const mezurashis = await getMezurashis(account);
   logger.info(`Loaded ${mezurashis.length} mezurashis`);
 
-  for (let i = 3; i < 4; i++) {
+  for (let i = 0; i < mezurashis.length; i++) {
     const mezurashi = mezurashis[i];
     logger.info(
       `Mezurashi ${i}/${mezurashis.length}: #${mezurashi.id}, id=${mezurashi._id}, games=${mezurashi.gameCount}/10`

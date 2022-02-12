@@ -4,12 +4,6 @@ const { upgradeStats, hasRequiredStats } = require('./stats');
 const { sleep } = require("./utils");
 const { logger } = require("./logger");
 
-/**
- * TODO:
- * - lower coeff
- * - remove limits
- */
-
 const MAX_GAME_COUNT = 10;
 
 module.exports.play = async function (userInfo, mezurashi) {

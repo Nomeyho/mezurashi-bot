@@ -5,10 +5,10 @@ const { logger } = require("./logger");
 const STATS = ["life", "force", "speed", "critical"];
 const COST = 50;
 const COEFF = {
-  life: 0.7,
-  force: 0.9,
-  speed: 0.9,
-  critical: 0.5,
+  life: 0.75,
+  force: 0.5,
+  speed: 0.5,
+  critical: 0.1,
 };
 const UPGRADES = {
   life: [
@@ -77,7 +77,7 @@ async function upgradeStat(userInfo, stat, mezurashi, requiredStat) {
 
 async function doUpgradeStat(userInfo, mezurashi, stat) {
   const result = await upgradeMezurashi(mezurashi.account, mezurashi._id, stat);
-  logger.info(`Upgraded: ${UPGRADES[stat][result]}`);
+  logger.info(`Upgraded: ${UPGRADES[stat][result - 1]}`);
 
   await sleep(2000);
   await refreshMezurashi(mezurashi);
