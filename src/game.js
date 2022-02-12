@@ -84,6 +84,6 @@ async function onKey(ws, message, mezurashi, game) {
 }
 
 async function onEnd(message, game, resolve) {
-  logger.info(`End fight: remainingLife=${game.userLife} result=${message.result} reward=${message.kota}$`);
+  logger.info(`End fight: remainingLife=${game.userLife} enemyLife=${game.enemyLife} result=${message.result} reward=${message.kota}$`);
   resolve();
 }

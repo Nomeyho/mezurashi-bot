@@ -5,8 +5,8 @@ const { logger } = require("./logger");
 const STATS = ["life", "force", "speed", "critical"];
 const COST = 50;
 const COEFF = {
-  life: 0.75,
-  force: 0.5,
+  life: 0.85,
+  force: 0.75,
   speed: 0.5,
   critical: 0.1,
 };

@@ -31,8 +31,6 @@ module.exports.play = async function (userInfo, mezurashi) {
         await refreshMezurashi(mezurashi);
         await refreshUserInfo(userInfo);
         await sleep(1000);
-
-        return; // TODO
     }
 
     logger.info('No more game to play');
