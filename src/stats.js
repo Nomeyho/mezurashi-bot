@@ -1,36 +1,56 @@
-const { upgradeMezurashi, getUserInfo, getMezurashi } = require('./client');
-const { sleep } = require('./utils');
+const { upgradeMezurashi, getMezurashi, getUserInfo } = require("./client");
+const { sleep } = require("./utils");
 
-const stats = ['life', 'force', 'speed', 'critical'];
+const STATS = ["life", "force", "speed", "critical"];
+const COST = 50;
+const COEFF = {
+  life: 0.7,
+  force: 0.9,
+  speed: 0.9,
+  critical: 0.5,
+};
 
-module.exports.upgradeStats = async function(userInfo, mezurashi, nextMap) {
-    for (const stat of stats) {
-        if (!await upgradeStat(userInfo, stat, mezurashi, nextMap)) {
-            return false;
-        }
-    }
+module.exports.upgradeStats = async function (userInfo, mezurashi, map) {
+  for (const stat of STATS) {
+    await upgradeStat(userInfo, stat, mezurashi, COEFF[stat] * map[stat]);
+  }
+};
 
-    return true;
+module.exports.hasRequiredStats = function (mezurashi, map) {
+  return STATS.every((stat) => hasRequiredStat(mezurashi, map, stat));
+};
+
+async function upgradeStat(userInfo, stat, mezurashi, requiredStat) {
+  console.log(`Next map requires: ${mezurashi[stat]}/${requiredStat} ${stat}`);
+
+  while (userInfo.mezuwar >= COST && mezurashi[stat] < requiredStat) {
+    await doUpgradeStat(userInfo, mezurashi, stat);
+  }
+
+  console.log(`No more money to upgrade '${stat}': ${userInfo.mezuwar}$`);
 }
 
-async function upgradeStat(userInfo, stat, mezurashi, nextMap) {
-    let mezuStat = mezurashi[stat];
-    const requiredStat = nextMap[stat];
-    console.log(`Next map requires: ${mezuStat}/${requiredStat} ${stat}`);
+async function doUpgradeStat(userInfo, mezurashi, stat) {
+  await upgradeMezurashi(mezurashi.account, mezurashi._id, stat);
+  await sleep(2000);
+  await refreshMezurashi(mezurashi);
+  await refreshUserInfo(userInfo);
 
-    while (mezuStat < requiredStat) {
-        if (userInfo.mezuwar >= 50) {
-            await upgradeMezurashi(mezurashi.account, mezurashi._id, stat);
-            await sleep(2000);
-            Object.assign(userInfo, await getUserInfo(mezurashi.account));
-            Object.assign(mezurashi, await getMezurashi(mezurashi.account, mezurashi._id));
-            console.log(`Upgraded: life=${mezurashi.life}, force=${mezurashi.force}, speed=${mezurashi.speed}, critical=${mezurashi.critical}`);
-            mezuStat = mezurashi[stat];
-        } else {
-            console.log(`No more money to upgrade '${stat}': ${userInfo.mezuwar}$`);
-            return false;
-        }
-    }
+  console.log(
+    `Upgraded: life=${mezurashi.life}, force=${mezurashi.force}, speed=${mezurashi.speed}, critical=${mezurashi.critical}`
+  );
+}
 
-    return true;
+function hasRequiredStat(mezurashi, map, stat) {
+  return mezurashi[stat] >= COEFF[stat] * map[stat];
+}
+
+async function refreshMezurashi(mezurashi) {
+  const updatedMezurashi = await getMezurashi(mezurashi.account, mezurashi._id);
+  Object.assign(mezurashi, updatedMezurashi);
+}
+
+async function refreshUserInfo(userInfo) {
+  const updatedUserInfo = await getUserInfo(userInfo.account);
+  Object.assign(userInfo, updatedUserInfo);
 }

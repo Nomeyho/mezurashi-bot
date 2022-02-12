@@ -5,7 +5,7 @@ const { play } = require('./mezurashi');
 const main = async (account) => {
   const userInfo = await getUserInfo(account);
   console.log(`Account id=${account} arcade=${userInfo.arcade}, history=${userInfo.currentMap}, mezuwar=${userInfo.mezuwar}`);
-
+  
   const mezurashis = await getMezurashis(account);
   console.log(`Loaded ${mezurashis.length} mezurashis`);
 
