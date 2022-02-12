@@ -1,0 +1,239 @@
+info: Account: id=0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11 arcade=2, history=0, mezuwar=70
+info: Loaded 50 mezurashis
+info: Mezurashi 2/50: #6155, id=61d68cb64100852e510d62d1, games=10/10
+info: No more game to play
+info: Account: id=0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11 arcade=2, history=0, mezuwar=70
+info: Loaded 50 mezurashis
+info: Mezurashi 3/50: #6156, id=61d68cb64100852e510d62d3, games=0/10
+info: Next map: Turkish lira (level=2, id=61bf5661aa406f0015614636)
+info: Life required for next level: 10/45.5
+info: Upgraded: +5 life
+info: Upgraded: +10 life (special)
+info: Not enough money to upgrade 'life': 20$
+info: Force required for next level: 1/9
+info: Not enough money to upgrade 'force': 20$
+info: Speed required for next level: 1/4.5
+info: Not enough money to upgrade 'speed': 20$
+info: Critical required for next level: 1/2
+info: Not enough money to upgrade 'critical': 20$
+info: Insufficient stats, using previous map
+info: Map: Roupie indienne (level=1, id=61b6529272c6c0c2f2605a0c)
+info: Mezurashi stats: life=18, force=1, speed=1, critical=1
+info: Enemy stats: life=10, force=1, speed=2, critical=2
+debug: < 
+debug: > 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: < 
+debug: > 
+debug: < 
+debug: < 
+debug: < 
+info: End fight: remainingLife=13 result=win reward=95$
+undefined [info] Account: id=0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11 arcade=2, history=0, mezuwar=115
+undefined [info] Loaded 50 mezurashis
+undefined [info] Mezurashi 3/50: #6156, id=61d68cb64100852e510d62d3, games=1/10
+undefined [info] Next map: Turkish lira (level=2, id=61bf5661aa406f0015614636)
+undefined [info] Life required for next level: 18/45.5
+undefined [info] Upgraded: loose
+undefined [info] Upgraded: +5 life
+undefined [info] Upgraded: +8 life
+undefined [info] Not enough money to upgrade 'life': 15$
+undefined [info] Force required for next level: 1/9
+undefined [info] Not enough money to upgrade 'force': 15$
+undefined [info] Speed required for next level: 1/4.5
+undefined [info] Not enough money to upgrade 'speed': 15$
+undefined [info] Critical required for next level: 1/2
+undefined [info] Not enough money to upgrade 'critical': 15$
+undefined [info] Insufficient stats, using previous map
+undefined [info] Map: Roupie indienne (level=1, id=61b6529272c6c0c2f2605a0c)
+undefined [info] Mezurashi stats: life=28, force=1, speed=1, critical=1
+undefined [info] Enemy stats: life=10, force=1, speed=2, critical=2
+undefined [debug] < {"type":"hello"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"login"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"start","map":"61b6529272c6c0c2f2605a0c","nft":"6156"}
+undefined [debug] < {"action":"timeout","value":"3"}
+undefined [debug] < {"action":"timeout","value":"2"}
+undefined [debug] < {"action":"timeout","value":"1"}
+undefined [debug] < {"action":"start"}
+undefined [debug] < {"action":"update","gameId":301,"userLife":28,"enemyLife":10,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":"g"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"g","gameId":301}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"update","gameId":301,"userLife":28,"enemyLife":9,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":"q"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"q","gameId":301}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"enemyfight"}
+undefined [debug] < {"action":"update","gameId":301,"userLife":28,"enemyLife":8,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"update","gameId":301,"userLife":27,"enemyLife":8,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":"s"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"s","gameId":301}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"update","gameId":301,"userLife":27,"enemyLife":7,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":"o"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"o","gameId":301}
+undefined [debug] < {"action":"enemyfight"}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"update","gameId":301,"userLife":26,"enemyLife":7,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"update","gameId":301,"userLife":26,"enemyLife":6,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":"b"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"b","gameId":301}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"update","gameId":301,"userLife":26,"enemyLife":5,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"enemyfight"}
+undefined [debug] < {"action":"key","key":"a"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"a","gameId":301}
+undefined [debug] < {"action":"update","gameId":301,"userLife":25,"enemyLife":5,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"update","gameId":301,"userLife":25,"enemyLife":4,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":"p"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"p","gameId":301}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"update","gameId":301,"userLife":25,"enemyLife":3,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"enemyfight"}
+undefined [debug] < {"action":"update","gameId":301,"userLife":24,"enemyLife":3,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":"a"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"a","gameId":301}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"update","gameId":301,"userLife":24,"enemyLife":2,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":"l"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"l","gameId":301}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"enemyfight"}
+undefined [debug] < {"action":"update","gameId":301,"userLife":23,"enemyLife":2,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"update","gameId":301,"userLife":23,"enemyLife":1,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"key","key":"g"}
+undefined [debug] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"g","gameId":301}
+undefined [debug] < {"action":"key","key":null,"wrongkey":null,"success":true}
+undefined [debug] < {"action":"update","gameId":301,"userLife":23,"enemyLife":0,"userFullLife":28,"enemyFullLife":10}
+undefined [debug] < {"action":"end","result":"win","kota":90}
+undefined [info] End fight: remainingLife=23 result=win reward=90$
+2022-02-12T16:20:18.674Z [INFO] Account: id=0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11 arcade=2, history=0, mezuwar=105
+2022-02-12T16:20:19.407Z [INFO] Loaded 50 mezurashis
+2022-02-12T16:20:19.407Z [INFO] Mezurashi 3/50: #6156, id=61d68cb64100852e510d62d3, games=2/10
+2022-02-12T16:20:19.987Z [INFO] Next map: Turkish lira (level=2, id=61bf5661aa406f0015614636)
+2022-02-12T16:20:19.988Z [INFO] Life required for next level: 28/45.5
+2022-02-12T16:20:20.477Z [INFO] Upgraded: +8 life
+2022-02-12T16:20:25.027Z [INFO] Upgraded: +10 life (special)
+2022-02-12T16:20:28.021Z [INFO] Not enough money to upgrade 'life': 5$
+2022-02-12T16:20:28.022Z [INFO] Force required for next level: 1/9
+2022-02-12T16:20:28.022Z [INFO] Not enough money to upgrade 'force': 5$
+2022-02-12T16:20:28.022Z [INFO] Speed required for next level: 1/4.5
+2022-02-12T16:20:28.022Z [INFO] Not enough money to upgrade 'speed': 5$
+2022-02-12T16:20:28.022Z [INFO] Critical required for next level: 1/2
+2022-02-12T16:20:28.022Z [INFO] Not enough money to upgrade 'critical': 5$
+2022-02-12T16:20:28.518Z [INFO] Insufficient stats, using previous map
+2022-02-12T16:20:29.148Z [INFO] Map: Roupie indienne (level=1, id=61b6529272c6c0c2f2605a0c)
+2022-02-12T16:20:29.149Z [INFO] Mezurashi stats: life=36, force=1, speed=1, critical=1
+2022-02-12T16:20:29.149Z [INFO] Enemy stats: life=10, force=1, speed=2, critical=2
+2022-02-12T16:20:29.968Z [DEBUG] < {"type":"hello"}
+2022-02-12T16:20:29.969Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"login"}
+2022-02-12T16:20:31.891Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"start","map":"61b6529272c6c0c2f2605a0c","nft":"6156"}
+2022-02-12T16:20:32.358Z [DEBUG] < {"action":"timeout","value":"3"}
+2022-02-12T16:20:33.143Z [DEBUG] < {"action":"timeout","value":"2"}
+2022-02-12T16:20:34.107Z [DEBUG] < {"action":"timeout","value":"1"}
+2022-02-12T16:20:35.455Z [DEBUG] < {"action":"start"}
+2022-02-12T16:20:35.455Z [DEBUG] < {"action":"update","gameId":303,"userLife":36,"enemyLife":10,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:35.455Z [DEBUG] < {"action":"key","key":"p"}
+2022-02-12T16:20:35.455Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"p","gameId":303}
+2022-02-12T16:20:35.496Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:36.503Z [DEBUG] < {"action":"update","gameId":303,"userLife":36,"enemyLife":9,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:37.021Z [DEBUG] < {"action":"key","key":"p"}
+2022-02-12T16:20:37.021Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"p","gameId":303}
+2022-02-12T16:20:37.072Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:37.978Z [DEBUG] < {"action":"enemyfight"}
+2022-02-12T16:20:38.077Z [DEBUG] < {"action":"update","gameId":303,"userLife":36,"enemyLife":8,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:38.382Z [DEBUG] < {"action":"update","gameId":303,"userLife":35,"enemyLife":8,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:38.574Z [DEBUG] < {"action":"key","key":"q"}
+2022-02-12T16:20:38.574Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"q","gameId":303}
+2022-02-12T16:20:38.616Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:39.616Z [DEBUG] < {"action":"update","gameId":303,"userLife":35,"enemyLife":7,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:40.125Z [DEBUG] < {"action":"key","key":"q"}
+2022-02-12T16:20:40.125Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"q","gameId":303}
+2022-02-12T16:20:40.184Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:40.876Z [DEBUG] < {"action":"enemyfight"}
+2022-02-12T16:20:41.191Z [DEBUG] < {"action":"update","gameId":303,"userLife":35,"enemyLife":6,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:41.280Z [DEBUG] < {"action":"update","gameId":303,"userLife":34,"enemyLife":6,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:41.703Z [DEBUG] < {"action":"key","key":"g"}
+2022-02-12T16:20:41.703Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"g","gameId":303}
+2022-02-12T16:20:41.855Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:42.812Z [DEBUG] < {"action":"update","gameId":303,"userLife":34,"enemyLife":5,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:43.283Z [DEBUG] < {"action":"key","key":"a"}
+2022-02-12T16:20:43.283Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"a","gameId":303}
+2022-02-12T16:20:43.333Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:43.749Z [DEBUG] < {"action":"enemyfight"}
+2022-02-12T16:20:44.241Z [DEBUG] < {"action":"update","gameId":303,"userLife":33,"enemyLife":5,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:44.388Z [DEBUG] < {"action":"update","gameId":303,"userLife":33,"enemyLife":4,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:44.888Z [DEBUG] < {"action":"key","key":"g"}
+2022-02-12T16:20:44.888Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"g","gameId":303}
+2022-02-12T16:20:45.025Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:46.054Z [DEBUG] < {"action":"update","gameId":303,"userLife":33,"enemyLife":3,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:46.515Z [DEBUG] < {"action":"enemyfight"}
+2022-02-12T16:20:46.637Z [DEBUG] < {"action":"key","key":"a"}
+2022-02-12T16:20:46.637Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"a","gameId":303}
+2022-02-12T16:20:47.049Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:47.050Z [DEBUG] < {"action":"update","gameId":303,"userLife":32,"enemyLife":3,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:47.891Z [DEBUG] < {"action":"update","gameId":303,"userLife":32,"enemyLife":2,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:48.493Z [DEBUG] < {"action":"key","key":"q"}
+2022-02-12T16:20:48.494Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"q","gameId":303}
+2022-02-12T16:20:48.804Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:49.647Z [DEBUG] < {"action":"enemyfight"}
+2022-02-12T16:20:49.789Z [DEBUG] < {"action":"update","gameId":303,"userLife":32,"enemyLife":1,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:50.219Z [DEBUG] < {"action":"update","gameId":303,"userLife":31,"enemyLife":1,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:50.312Z [DEBUG] < {"action":"key","key":"p"}
+2022-02-12T16:20:50.313Z [DEBUG] > {"account":"0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11","action":"game","key":"p","gameId":303}
+2022-02-12T16:20:50.678Z [DEBUG] < {"action":"key","key":null,"wrongkey":null,"success":true}
+2022-02-12T16:20:51.642Z [DEBUG] < {"action":"update","gameId":303,"userLife":31,"enemyLife":0,"userFullLife":36,"enemyFullLife":10}
+2022-02-12T16:20:52.148Z [DEBUG] < {"action":"end","result":"win","kota":85}
+2022-02-12T16:20:52.149Z [INFO] End fight: remainingLife=31 result=win reward=85$

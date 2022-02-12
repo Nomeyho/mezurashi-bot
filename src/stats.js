@@ -1,5 +1,6 @@
 const { upgradeMezurashi, getMezurashi, getUserInfo } = require("./client");
 const { sleep } = require("./utils");
+const { logger } = require("./logger");
 
 const STATS = ["life", "force", "speed", "critical"];
 const COST = 50;
@@ -56,14 +57,16 @@ module.exports.hasRequiredStats = function (mezurashi, map) {
 
 async function upgradeStat(userInfo, stat, mezurashi, requiredStat) {
   if (mezurashi[stat] < requiredStat) {
-    console.log(
-      `${stat.capitalize()} required for next level: ${mezurashi[stat]}/${requiredStat}`
+    logger.info(
+      `${stat.capitalize()} required for next level: ${
+        mezurashi[stat]
+      }/${requiredStat}`
     );
   }
 
   while (mezurashi[stat] < requiredStat) {
     if (userInfo.mezuwar < COST) {
-      console.log(
+      logger.info(
         `Not enough money to upgrade '${stat}': ${userInfo.mezuwar}$`
       );
       return;
@@ -74,7 +77,7 @@ async function upgradeStat(userInfo, stat, mezurashi, requiredStat) {
 
 async function doUpgradeStat(userInfo, mezurashi, stat) {
   const result = await upgradeMezurashi(mezurashi.account, mezurashi._id, stat);
-  console.log(`Upgraded: ${UPGRADES[stat][result]}`);
+  logger.info(`Upgraded: ${UPGRADES[stat][result]}`);
 
   await sleep(2000);
   await refreshMezurashi(mezurashi);

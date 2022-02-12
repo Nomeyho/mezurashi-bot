@@ -5,6 +5,7 @@
   "main": "history_bot.js",
   "dependencies": {
     "axios": "^0.25.0",
+    "winston": "^3.5.1",
     "ws": "^8.4.2"
   },
   "devDependencies": {},

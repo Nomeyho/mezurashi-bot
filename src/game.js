@@ -1,5 +1,6 @@
 const { WS } = require("./ws");
 const { sleep } = require("./utils");
+const { logger } = require("./logger");
 
 module.exports.play = async (mezurashi, map) => {
   return new Promise((resolve, reject) => {
@@ -36,7 +37,7 @@ function onMessage(mezurashi, game, map, resolve) {
       case "start":
         break;
       default:
-        console.warn("Unsupported action:", message);
+        logger.warn("Unsupported action:", message);
     }
   };
 }
@@ -81,6 +82,6 @@ async function onKey(ws, message, mezurashi, game) {
 }
 
 async function onEnd(message, game, resolve) {
-  console.log(`End fight: remainingLife=${game.userLife} result=${message.result} reward=${message.kota}$`);
+  logger.info(`End fight: remainingLife=${game.userLife} result=${message.result} reward=${message.kota}$`);
   resolve();
 }

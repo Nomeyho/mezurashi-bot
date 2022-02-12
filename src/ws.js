@@ -1,4 +1,5 @@
 const WebSocket = require("ws");
+const { logger } = require("./logger");
 
 const WS_URL = "ws://api.mezukotai.com";
 const HEADERS = {
@@ -31,19 +32,19 @@ module.exports.WS = class WS {
 
   _onMessage(data) {
     const str = data.toString("utf-8");
-    console.log("< ", str);
+    logger.debug(`< ${str}`);
     const message = JSON.parse(str);
     return this.onMessage(this, message);
   }
 
   _onError(error) {
-    console.error(error);
+    logger.error(error);
     return this.onError(this, error);
   }
 
   send(message) {
     const data = JSON.stringify(message);
-    console.log("> ", data);
+    logger.debug(`> ${data}`);
     this.ws.send(data);
   }
 };
