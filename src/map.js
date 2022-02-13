@@ -1,6 +1,39 @@
+const maps = require("../data/maps.json");
+const { getArcadeMap } = require('./client');
+const { hasRequiredStats } = require("./stats");
+const { logger } = require("./logger");
 
-// Prefetch all maps
-// iterate from userInfo.arcade to 0
-// stop at the first index matching all stats
-// take the next one and try upgrade
-// handle case where there's no next one (return simply)/there none matching all stats (use first one)
+module.exports.getNextMap = async function (userInfo, mezurashi) {
+  const nextMapIndex = getNextMapIndex(userInfo, mezurashi);
+
+  if (nextMapIndex < userInfo.arcade) {
+    // Use next map, if any
+    return maps[nextMapIndex + 1];
+  } else {
+    // Reached the last map
+    return maps[nextMapIndex];
+  }
+};
+
+function getNextMapIndex(userInfo, mezurashi) {
+  for (let i = userInfo.arcade; i >= 0; i--) {
+    if (hasRequiredStats(mezurashi, maps[i])) {
+      logger.debug(
+        `Found matching map: index=${i}, id=${maps[i]._id}, name=${maps[i].name}`
+      );
+      return i;
+    }
+  }
+
+  return 0;
+}
+
+module.exports.selectMap = async function (userInfo, mezurashi, nextMap) {
+    if (hasRequiredStats(mezurashi, nextMap) || userInfo.arcade == 0) {
+        logger.info(`Sufficient stats, using next map`);
+        return nextMap;
+    } else {
+        logger.info(`Insufficient stats, using previous map`);
+        return await getArcadeMap(userInfo.account, userInfo.arcade - 1);
+    }
+}
