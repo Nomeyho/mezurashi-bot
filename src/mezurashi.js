@@ -8,6 +8,8 @@ const { logger } = require("./logger");
 const MAX_GAME_COUNT = 10;
 
 module.exports.play = async function (userInfo, mezurashi) {
+  // await refreshUserInfo(userInfo, mezurashi);
+
   while (mezurashi.gameCount < MAX_GAME_COUNT) {
     const nextMap = await getNextMap(userInfo, mezurashi);
     logger.info(
@@ -31,7 +33,7 @@ module.exports.play = async function (userInfo, mezurashi) {
     await sleep(1000);
 
     await refreshMezurashi(mezurashi);
-    await refreshUserInfo(userInfo);
+    await refreshUserInfo(userInfo, mezurashi);
     await sleep(1000);
   }
 
@@ -43,7 +45,7 @@ async function refreshMezurashi(mezurashi) {
   Object.assign(mezurashi, updatedMezurashi);
 }
 
-async function refreshUserInfo(userInfo) {
-  const updatedUserInfo = await getUserInfo(userInfo.account);
+async function refreshUserInfo(userInfo, mezurashi) {
+  const updatedUserInfo = await getUserInfo(userInfo.account, mezurashi);
   Object.assign(userInfo, updatedUserInfo);
 }

@@ -14,7 +14,7 @@ const main = async (account) => {
   for (let i = 0; i < mezurashis.length; i++) {
     const mezurashi = mezurashis[i];
     logger.info(
-      `Mezurashi ${i}/${mezurashis.length}: #${mezurashi.id}, id=${mezurashi._id}, games=${mezurashi.gameCount}/10`
+      `Mezurashi ${i+1}/${mezurashis.length}: #${mezurashi.id}, id=${mezurashi._id}, games=${mezurashi.gameCount}/10`
     );
     await play(userInfo, mezurashi);
   }

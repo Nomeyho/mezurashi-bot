@@ -5,9 +5,9 @@ const { logger } = require("./logger");
 const STATS = ["life", "force", "speed", "critical"];
 const COST = 50;
 const COEFF = {
-  life: 0.85,
-  force: 0.75,
-  speed: 0.5,
+  life: 0.8,
+  force: 0.8,
+  speed: 0.75,
   critical: 0.1,
 };
 const UPGRADES = {
@@ -81,7 +81,7 @@ async function doUpgradeStat(userInfo, mezurashi, stat) {
 
   await sleep(2000);
   await refreshMezurashi(mezurashi);
-  await refreshUserInfo(userInfo);
+  await refreshUserInfo(userInfo, mezurashi);
 }
 
 function hasRequiredStat(mezurashi, map, stat) {
@@ -93,7 +93,7 @@ async function refreshMezurashi(mezurashi) {
   Object.assign(mezurashi, updatedMezurashi);
 }
 
-async function refreshUserInfo(userInfo) {
-  const updatedUserInfo = await getUserInfo(userInfo.account);
+async function refreshUserInfo(userInfo, mezurashi) {
+  const updatedUserInfo = await getUserInfo(userInfo.account, mezurashi);
   Object.assign(userInfo, updatedUserInfo);
 }

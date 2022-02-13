@@ -34,6 +34,6 @@ module.exports.selectMap = async function (userInfo, mezurashi, nextMap) {
         return nextMap;
     } else {
         logger.info(`Insufficient stats, using previous map`);
-        return await getArcadeMap(userInfo.account, userInfo.arcade - 1);
+        return await getArcadeMap(userInfo.account, nextMap.level - 1);
     }
 }

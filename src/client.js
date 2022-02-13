@@ -14,8 +14,8 @@ const HEADERS = {
   "Sec-Fetch-Site": "cross-site",
 };
 
-module.exports.getUserInfo = async function (account) {
-  return await get(account, "/v1/users/info");
+module.exports.getUserInfo = async function (account, mezurashi) {
+  return await get(account, `/v1/users/info?mezurashi=${mezurashi?.id}`);
 };
 
 module.exports.getMezurashis = async function (account) {
