@@ -50,12 +50,12 @@ function onError(reject) {
  * Message handlers
  */
 async function onLogin(ws, mezurashi, map) {
-  ws.send({
+  await ws.send({
     account: mezurashi.account,
     action: "login",
   });
-  await sleep(2000);
-  ws.send({
+  await sleep(1000);
+  await ws.send({
     account: mezurashi.account,
     action: "start",
     map: map._id,
@@ -72,7 +72,7 @@ async function onUpdate(message, game) {
 async function onKey(ws, message, mezurashi, game) {
   if (message.key) {
     logger.info(`> Press key ${message.key}`);
-    ws.send({
+    await ws.send({
       account: mezurashi.account,
       action: "game",
       key: message.key,

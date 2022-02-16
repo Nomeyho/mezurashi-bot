@@ -28,6 +28,9 @@ module.exports.WS = class WS {
     this.ws = new WebSocket(WS_URL, { headers: HEADERS });
     this.ws.on("message", this._onMessage.bind(this));
     this.ws.on("error", this._onError.bind(this));
+    this.ws.on("close", this._onClose.bind(this));
+    this.ws.on("unexpected-response", this._onUnexpectedResponse.bind(this));
+    this.ws.onError = this._onError.bind(this);
   }
 
   _onMessage(data) {
@@ -42,9 +45,19 @@ module.exports.WS = class WS {
     return this.onError(this, error);
   }
 
-  send(message) {
-    const data = JSON.stringify(message);
-    logger.debug(`> ${data}`);
-    this.ws.send(data);
+  _onClose(code) {
+    logger.debug(`Connection closed: code=${code}`);
+  }
+
+  _onUnexpectedResponse(request, response) {
+    logger.error(`Unexpected response:\n${request}\n${response}`);
+  }
+
+  async send(message) {
+    return new Promise((resolve, reject) => {
+      const data = JSON.stringify(message);
+      logger.debug(`> ${data}`);
+      this.ws.send(data, {}, (e) => e ? reject() : resolve());
+    });
   }
 };

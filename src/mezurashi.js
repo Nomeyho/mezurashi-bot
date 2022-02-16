@@ -8,9 +8,9 @@ const { logger } = require("./logger");
 const MAX_GAME_COUNT = 10;
 
 module.exports.play = async function (userInfo, mezurashi) {
-  // await refreshUserInfo(userInfo, mezurashi);
-
   while (mezurashi.gameCount < MAX_GAME_COUNT) {
+    logger.info(`Game: ${mezurashi.gameCount}`);
+    
     const nextMap = await getNextMap(userInfo, mezurashi);
     logger.info(
       `Next map: ${nextMap.name} (level=${nextMap.level}, id=${nextMap._id})`
@@ -34,7 +34,7 @@ module.exports.play = async function (userInfo, mezurashi) {
 
     await refreshMezurashi(mezurashi);
     await refreshUserInfo(userInfo, mezurashi);
-    await sleep(1000);
+    await sleep(2000);
   }
 
   logger.info("No more game to play");
