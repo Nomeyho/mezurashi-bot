@@ -1,13 +1,9 @@
-const { getUserInfo, getMezurashis } = require("./client");
+const { getMezurashis } = require("./client");
 const { play } = require("./mezurashi");
 const { logger } = require("./logger");
 
 const main = async (account) => {
-  const userInfo = await getUserInfo(account);
-  logger.info(
-    `Account: id=${account} arcade=${userInfo.arcade}, history=${userInfo.currentMap}, mezuwar=${userInfo.mezuwar}`
-  );
-
+  logger.info(`Account: ${account}`);
   const mezurashis = await getMezurashis(account);
   logger.info(`Loaded ${mezurashis.length} mezurashis`);
 
@@ -16,7 +12,7 @@ const main = async (account) => {
     logger.info(
       `Mezurashi ${i+1}/${mezurashis.length}: #${mezurashi.id}, id=${mezurashi._id}, games=${mezurashi.gameCount}/10`
     );
-    await play(userInfo, mezurashi);
+    await play(mezurashi);
   }
 };
 

@@ -7,9 +7,11 @@ const { logger } = require("./logger");
 
 const MAX_GAME_COUNT = 10;
 
-module.exports.play = async function (userInfo, mezurashi) {
-  while (mezurashi.gameCount < MAX_GAME_COUNT) {
-    logger.info(`Game: ${mezurashi.gameCount}`);
+module.exports.play = async function (mezurashi) {
+  let userInfo = await getUserInfo(mezurashi.account, mezurashi);
+
+  while (userInfo.gameCount < MAX_GAME_COUNT) {
+    logger.info(`Game: ${userInfo.gameCount + 1} (${userInfo.mezuwar}$)`);
     
     const nextMap = await getNextMap(userInfo, mezurashi);
     logger.info(
