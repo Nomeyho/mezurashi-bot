@@ -5,7 +5,7 @@ async function main() {
     const maps = [];
 
     for(let i = 0; i < 500; i++) {
-        const map = await getArcadeMap('0xA2Ed91BF97377eB418804c302319fa26f258292A', i);
+        const map = await getArcadeMap('0xA2Ed91BF97377eB418804c302319fa26f258292A', i, undefined);
         if (!map) {
             break;
         } else {

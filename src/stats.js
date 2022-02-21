@@ -2,11 +2,18 @@ const { upgradeMezurashi, getMezurashi, getUserInfo } = require("./client");
 const { sleep } = require("./utils");
 const { logger } = require("./logger");
 
+
+/**
+ * 
+ * 
+ * 
+ */
+
 const STATS = ["life", "force", "speed", "critical"];
 const COST = 50;
 const COEFF = {
-  life: 0.95,
-  force: 0.9,
+  life: 0.9,
+  force: 0.8,
   speed: 0.9,
   critical: 0.1,
 };

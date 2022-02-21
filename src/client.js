@@ -26,8 +26,8 @@ module.exports.getMezurashi = async function (account, mezurashiId) {
   return await get(account, `/v1/users/mezurashi/${mezurashiId}`);
 };
 
-module.exports.getArcadeMap = async function (account, level) {
-  return await get(account, `/v1/arcade/${level}`);
+module.exports.getArcadeMap = async function (account, level, mezurashi) {
+  return await get(account, `/v1/arcade/${level}?mezurashi=${mezurashi?.id}`);
 };
 
 module.exports.getHistoryMaps = async function (account) {

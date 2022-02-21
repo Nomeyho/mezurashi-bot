@@ -22,7 +22,8 @@ module.exports.play = async function (mezurashi) {
     await sleep(500);
 
     const map = await selectMap(userInfo, mezurashi, nextMap);
-    logger.info(`Map: ${map.name} (level=${map.level}, id=${map._id})`);
+    // TODO if reward = 0
+    logger.info(`Map: ${map.name} (level=${map.level}, id=${map._id}, reward=${map.toWin}$)`);
     logger.info(
       `Mezurashi stats: life=${mezurashi.life}, force=${mezurashi.force}, speed=${mezurashi.speed}, critical=${mezurashi.critical}`
     );
@@ -42,12 +43,12 @@ module.exports.play = async function (mezurashi) {
   logger.info("No more game to play");
 };
 
-async function refreshMezurashi(mezurashi) {
+async function _refreshMezurashi(mezurashi) {
   const updatedMezurashi = await getMezurashi(mezurashi.account, mezurashi._id);
   Object.assign(mezurashi, updatedMezurashi);
 }
 
-async function refreshUserInfo(userInfo, mezurashi) {
+async function _refreshUserInfo(userInfo, mezurashi) {
   const updatedUserInfo = await getUserInfo(userInfo.account, mezurashi);
   Object.assign(userInfo, updatedUserInfo);
 }

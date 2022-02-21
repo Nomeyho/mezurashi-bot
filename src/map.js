@@ -31,9 +31,9 @@ function getNextMapIndex(userInfo, mezurashi) {
 module.exports.selectMap = async function (userInfo, mezurashi, nextMap) {
     if (hasRequiredStats(mezurashi, nextMap) || userInfo.arcade == 0) {
         logger.info(`Sufficient stats, using next map`);
-        return nextMap;
+        return getArcadeMap(userInfo.account, nextMap.level, mezurashi);
     } else {
         logger.info(`Insufficient stats, using previous map`);
-        return await getArcadeMap(userInfo.account, nextMap.level - 1);
+        return getArcadeMap(userInfo.account, nextMap.level - 1, mezurashi);
     }
 }
