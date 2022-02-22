@@ -8,7 +8,10 @@ module.exports.logger = winston.createLogger({
   level: "debug",
   format: winston.format.combine(winston.format.timestamp(), customFormat),
   transports: [
-    new winston.transports.File({ filename: "logs.log", level: "debug" }),
+    new winston.transports.File({
+      filename: `logs/logs-${new Date().toISOString().split('T')[0]}.log`,
+      level: "debug"
+    }),
     new winston.transports.Console({ level: "info" }),
   ],
 });

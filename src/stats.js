@@ -1,22 +1,18 @@
-const { upgradeMezurashi, getMezurashi, getUserInfo } = require("./client");
+const maps = require("../data/maps.json");
+const { upgradeMezurashi, getMezurashi, getUserInfo, getArcadeMap } = require("./client");
+const { simulate } = require('./simulator'); 
 const { sleep } = require("./utils");
 const { logger } = require("./logger");
 
-
-/**
- * 
- * 
- * 
- */
-
-const STATS = ["life", "force", "speed", "critical"];
-const COST = 50;
+const STATS = ["life", "force", "speed"];
 const COEFF = {
   life: 0.9,
   force: 0.8,
   speed: 0.9,
   critical: 0.1,
 };
+const COST = 50;
+const TO_WIN_THRESHOLD = 30;
 const UPGRADES = {
   life: [
     "try again",
@@ -52,48 +48,78 @@ const UPGRADES = {
   ],
 };
 
-module.exports.upgradeStats = async function (userInfo, mezurashi, map) {
+module.exports.upgradeStats = async function (userInfo, mezurashi) {
+  const nextMapStats = getNextMapStats(userInfo, mezurashi);
+
   for (const stat of STATS) {
-    await upgradeStat(userInfo, stat, mezurashi, COEFF[stat] * map[stat]);
+    await upgradeStat(userInfo, mezurashi, stat, nextMapStats);
   }
 };
 
-module.exports.hasRequiredStats = function (mezurashi, map) {
-  return STATS.every((stat) => hasRequiredStat(mezurashi, map, stat));
+module.exports.getMap = async function (userInfo, mezurashi) {
+  for (let i = getLastMapIndex(userInfo, mezurashi); i >= 0; i--) {
+    const map = await getArcadeMap(userInfo.account, i, mezurashi);
+    await sleep(1000);
+
+    if (map.toWin > TO_WIN_THRESHOLD) {
+      return map;
+    } else {
+      logger.info(`Too low reward for map: ${map.name} (level=${map.level}, id=${map._id}, reward=${map.toWin}$)`);
+    }
+  }
+  
+  throw new Error('Could not find playable map');
 };
 
-async function upgradeStat(userInfo, stat, mezurashi, requiredStat) {
-  if (mezurashi[stat] < requiredStat) {
+
+function getNextMapStats(userInfo, mezurashi) {
+  const lastMapIndex = getLastMapIndex(userInfo, mezurashi);
+
+  if (lastMapIndex < userInfo.arcade) {
+    // Use next map, if any
+    return maps[lastMapIndex + 1];
+  } else {
+    // Reached the last map
+    return maps[lastMapIndex];
+  }
+};
+
+function getLastMapIndex(userInfo, mezurashi) {
+  for (let i = userInfo.arcade; i >= 0; i--) {
+    if (hasRequiredStats(mezurashi, maps[i])) {
+      return i;
+    }
+  }
+  return 0;
+}
+
+async function upgradeStat(userInfo, mezurashi, stat, nextMapStats) {
+  if (mezurashi[stat] < nextMapStats[stat]) {
     logger.info(
-      `${stat.capitalize()} required for next level: ${
-        mezurashi[stat]
-      }/${requiredStat}`
+      `${stat.capitalize()} required for next level: ${mezurashi[stat]}/${nextMapStats[stat]}`
     );
   }
 
-  while (mezurashi[stat] < requiredStat) {
+  while (mezurashi[stat] < nextMapStats[stat]) {
     if (userInfo.mezuwar < COST) {
       logger.info(
         `Not enough money to upgrade '${stat}': ${userInfo.mezuwar}$`
       );
       return;
     }
-    await doUpgradeStat(userInfo, mezurashi, stat);
+    const result = await upgradeMezurashi(mezurashi.account, mezurashi._id, stat);
+    logger.info(`Upgraded: ${UPGRADES[stat][result - 1]}`);
+
+    await sleep(2000);
+    await refreshMezurashi(mezurashi);
+    await refreshUserInfo(userInfo, mezurashi);
   }
 }
 
-async function doUpgradeStat(userInfo, mezurashi, stat) {
-  const result = await upgradeMezurashi(mezurashi.account, mezurashi._id, stat);
-  logger.info(`Upgraded: ${UPGRADES[stat][result - 1]}`);
-
-  await sleep(2000);
-  await refreshMezurashi(mezurashi);
-  await refreshUserInfo(userInfo, mezurashi);
-}
-
-function hasRequiredStat(mezurashi, map, stat) {
-  return mezurashi[stat] >= COEFF[stat] * map[stat];
-}
+function hasRequiredStats(mezurashi, map) {
+  return simulate(mezurashi, map) == 1;
+  // TODO return STATS.every((stat) => mezurashi[stat] >= COEFF[stat] * map[stat]);
+};
 
 async function refreshMezurashi(mezurashi) {
   const updatedMezurashi = await getMezurashi(mezurashi.account, mezurashi._id);

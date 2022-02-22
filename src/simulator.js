@@ -1,31 +1,42 @@
+const { logger } = require("./logger");
 
-const player1 = { life: 230, force: 37, speed: 19, time: 0 };
-const player2 = {  life: 197,  force: 39, speed: 16, time: 0 };
+/**
+ * Return
+ * +1 if player1 wins
+ * -1 if player2 wins
+ * 0 if draw
+ */
+module.exports.simulate = function (player1, player2, details = false) {
+  let time1 = 0, time2 = 0;
+  let life1 = player1.life, life2 = player2.life;
+  let force1 = player1.force, force2 = player2.force;
+  let speed1 = player1.speed, speed2 = player2.speed;
 
-console.log(player1);
-console.log(player2);
+  while (life1 > 0 && life2 > 0) {
+    time1++;
+    time2++;
 
-while (player1.life > 0 && player2.life > 0) {
-    player1.time++;
-    player2.time++;
-
-    if (player1.time == 2500 - player1.speed) {
-        player2.life -= player1.force;
-        player1.time = 0;
-        console.log(`${player1.life} / ${player2.life}`);
+    if (time1 == 2500 - speed1) {
+      life2 -= force1;
+      time1 = 0;
+      details && console.log(`${life1} / ${life2}`);
     }
 
-    if (player2.time == 2500 - player2.speed) {
-        player1.life -= player2.force;
-        player2.time = 0;
-        console.log(`${player1.life} / ${player2.life}`);
+    if (time2 == 2500 - speed2) {
+      life1 -= force2;
+      time2 = 0;
+      details && console.log(`${life1} / ${life2}`);
     }
-}
+  }
 
-if (player1.life <= 0 && player2.life <= 0) {
-    console.log(`Draw`);
-} else if (player1.life <= 0) {
-    console.log(`Player 2 win`);
-} else {
-    console.log(`Player 1 win`);
-}
+  if (life1 <= 0 && life2 <= 0) {
+    logger.debug(`Draw`);
+    return 0;
+  } else if (life1 <= 0) {
+    logger.debug(`Player 2 win`);
+    return -1;
+  } else {
+    logger.debug(`Player 1 win`);
+    return 1;
+  }
+};
