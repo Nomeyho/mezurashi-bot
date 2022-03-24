@@ -1,6 +1,7 @@
 const { getMezurashis } = require("./client");
 const { play } = require("./mezurashi");
 const { logger } = require("./logger");
+const { ACCOUNT } = require("./config");
 
 const main = async (account) => {
   logger.info(`Account: ${account}`);
@@ -16,7 +17,4 @@ const main = async (account) => {
   }
 };
 
-// main('0xA2Ed91BF97377eB418804c302319fa26f258292A');
-main("0x1fA8501DbCb2f553Ddf6e2c8b052A8e862FD2c11");
-
-// TODO reduce game event logging/add colors
+main(ACCOUNT);

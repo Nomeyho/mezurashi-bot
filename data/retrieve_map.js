@@ -1,11 +1,14 @@
 const { getArcadeMap } = require('../src/client');
 const { writeFileSync } = require('fs');
+const { ACCOUNT } = require('../src/config');
+
+const MAX_MAP = 500;
 
 async function main() {
     const maps = [];
 
-    for(let i = 0; i < 500; i++) {
-        const map = await getArcadeMap('0xA2Ed91BF97377eB418804c302319fa26f258292A', i, undefined);
+    for(let i = 0; i < MAX_MAP; i++) {
+        const map = await getArcadeMap(ACCOUNT, i, undefined);
         if (!map) {
             break;
         } else {

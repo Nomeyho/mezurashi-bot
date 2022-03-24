@@ -12,7 +12,7 @@ const COEFF = {
   critical: 0.1,
 };
 const COST = 50;
-const TO_WIN_THRESHOLD = 30;
+const TO_WIN_THRESHOLD = 20;
 const UPGRADES = {
   life: [
     "try again",
@@ -64,7 +64,7 @@ module.exports.getMap = async function (userInfo, mezurashi) {
     if (map.toWin > TO_WIN_THRESHOLD) {
       return map;
     } else {
-      logger.info(`Too low reward for map: ${map.name} (level=${map.level}, id=${map._id}, reward=${map.toWin}$)`);
+      logger.debuf(`Too low reward for map: ${map.name} (level=${map.level}, id=${map._id}, reward=${map.toWin}$)`);
     }
   }
   
@@ -73,7 +73,7 @@ module.exports.getMap = async function (userInfo, mezurashi) {
 
 
 function getNextMapStats(userInfo, mezurashi) {
-  const lastMapIndex = getLastMapIndex(userInfo, mezurashi);
+  const lastMapIndex = getNextMapIndex(userInfo, mezurashi);
 
   if (lastMapIndex < userInfo.arcade) {
     // Use next map, if any
@@ -84,7 +84,7 @@ function getNextMapStats(userInfo, mezurashi) {
   }
 };
 
-function getLastMapIndex(userInfo, mezurashi) {
+function getNextMapIndex(userInfo, mezurashi) {
   for (let i = userInfo.arcade; i >= 0; i--) {
     if (hasRequiredStats(mezurashi, maps[i])) {
       return i;
@@ -93,22 +93,31 @@ function getLastMapIndex(userInfo, mezurashi) {
   return 0;
 }
 
+function getLastMapIndex(userInfo, mezurashi) {
+  for (let i = userInfo.arcade; i >= 0; i--) {
+    if (canWinAgainst(mezurashi, maps[i])) {
+      return i;
+    }
+  }
+  return 0;
+}
+
 async function upgradeStat(userInfo, mezurashi, stat, nextMapStats) {
   if (mezurashi[stat] < nextMapStats[stat]) {
-    logger.info(
+    logger.debug(
       `${stat.capitalize()} required for next level: ${mezurashi[stat]}/${nextMapStats[stat]}`
     );
   }
 
   while (mezurashi[stat] < nextMapStats[stat]) {
     if (userInfo.mezuwar < COST) {
-      logger.info(
+      logger.debug(
         `Not enough money to upgrade '${stat}': ${userInfo.mezuwar}$`
       );
       return;
     }
     const result = await upgradeMezurashi(mezurashi.account, mezurashi._id, stat);
-    logger.info(`Upgraded: ${UPGRADES[stat][result - 1]}`);
+    logger.debug(`Upgraded: ${UPGRADES[stat][result - 1]}`);
 
     await sleep(2000);
     await refreshMezurashi(mezurashi);
@@ -117,8 +126,11 @@ async function upgradeStat(userInfo, mezurashi, stat, nextMapStats) {
 }
 
 function hasRequiredStats(mezurashi, map) {
+  return STATS.every((stat) => mezurashi[stat] >= COEFF[stat] * map[stat]);
+};
+
+function canWinAgainst(mezurashi, map) {
   return simulate(mezurashi, map) == 1;
-  // TODO return STATS.every((stat) => mezurashi[stat] >= COEFF[stat] * map[stat]);
 };
 
 async function refreshMezurashi(mezurashi) {
