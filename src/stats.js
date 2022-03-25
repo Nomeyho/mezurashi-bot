@@ -64,7 +64,7 @@ module.exports.getMap = async function (userInfo, mezurashi) {
     if (map.toWin > TO_WIN_THRESHOLD) {
       return map;
     } else {
-      logger.debuf(`Too low reward for map: ${map.name} (level=${map.level}, id=${map._id}, reward=${map.toWin}$)`);
+      logger.debug(`Too low reward for map: ${map.name} (level=${map.level}, id=${map._id}, reward=${map.toWin}$)`);
     }
   }
   
